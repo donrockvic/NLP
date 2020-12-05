@@ -1,0 +1,68 @@
+Feature Vectors:
+Vectors: list of numbers
+
+Countings
+TF-IDF : Term frequency InverseDocument Frequency
+	Raw Word Counts/Documents counts
+
+In practise, we modify this to use log counts, smoothing etc., 
+
+
+V = Vacaboluar size (total # words)
+D = vector Dimentionality 
+
+ ie., if our matrix is V X D it means
+
+ we have total of V words and for each word we have vector of size D 
+
+ WORD EMBEDDING:
+	 Just a vector that repersents a word.
+
+
+	 We're "embedding" a categorical entity (a word) into a vector space.
+
+Word Analogy:
+	Realtionship between words.
+
+	king->man and Queen -> women
+
+so 
+king - Queen -= Prince - princess
+
+
+Finding the distancce between a anology, we can use 
+1. Euclidean distance
+2. Cosine distance :
+	1-(A.T*B)/(|A||B|)
+
+Where : A.T*B = |A||B|cos0
+
+In reality, usinf TF-IDF and counting across many words and documents, our dimentionality will get very large. 
+Using t-SNE can help us to reduce dimension.
+
+
+Model Structure:
+
+RNN
+
+	Embedding Layers -> Recurrent units  -> Dense Layers
+	(Word embedding)    (GRU or LSTM)
+
+
+Recursive NN
+	here each leaf node represents a word
+		1. represented by a word vector
+		2. which comes from our word embedding
+
+	embedding matrix
+		/		\
+	   []       []
+       /		/ \
+      john	  man  home
+
+
+[NOTE]
+
+
+
+brown")/coun("quick")

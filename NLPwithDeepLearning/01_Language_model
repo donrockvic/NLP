@@ -1,0 +1,56 @@
+
+Bigram Language model:
+language model: A model of the probability of a sequence of words.
+
+eg., "The quick brown fox jumps over a lazy dog".
+
+then A language model allows us to calculate:
+	p("The quick brown fox jumps over a lazy dog".)
+
+
+we have to involve some assumption about the language.
+
+Bigram model : p(w(t)/w(t-1)
+
+e.g, p("brown"|"quick") = 0.5, p("the"|"the")=0
+
+how:
+we have to count
+	how many times does "quick"->"brown"  appears in my set of documents.
+	how many time the sequence does "quick" appear i my document
+
+	p("brown"|"quick") = count("quick"->"brown")/count("quick")
+
+
+In documents we have toapply chain rule:
+	ie., like we have a sentence A B C
+
+	p(A->B->C) = p(C|A->B)p(B|A)p(A)
+
+		p(B|A) ia already Bigram
+		p(A) = count(A)/corpul length
+		p(C|A->B) = count(A->B->C)/count(A->B)
+
+Add one smoothing:
+
+P(smoothing)(B|A) = count(A->B)+1/count(A)+v
+
+v = vacabulary size
+
+Markov Assumtion:
+	"What i see now depends only on what i saw in the previous terms"
+	
+	First order Markaov: it dependens on one previous term
+
+		p(wt|wt-1,wt-2....w1) = p(wt|wt-1)
+
+		then p(A,B,C,D,E) = p(E|D)p(D|C)p(C|B)p(B|A)p(A)
+
+
+		p(w1,...wT) = p(W1)*Mul(t=2 to T){p(wt|wt-1)} => log(p(w1,...wT)) = log(p(w1))+ sum(t=2 to T){p(wt|wt-1)}
+
+		also normalize
+		l(1/T)[og(p(w1,...wT))] = (1/T)[log(p(w1))+ sum(t=2 to T){p(wt|wt-1)}]
+
+
+		where T = Length of the sentence
